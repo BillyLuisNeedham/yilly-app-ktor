@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.billyluisneedham.ApplicationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-01-30T18:13:53" hostname="Billys-MacBook-Pro.local" time="0.311">
+  <properties/>
+  <testcase name="testRoot" classname="com.billyluisneedham.ApplicationTest" time="0.311"/>
+  <system-out><![CDATA[2022-01-30 18:13:53.592 [Test worker] INFO  ktor.test - Autoreload is disabled because the development mode is off.
+2022-01-30 18:13:53.598 [Test worker] INFO  ktor.test - Application started in 0.046 seconds.
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
