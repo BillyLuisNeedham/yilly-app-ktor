@@ -1,4 +1,4 @@
-package com.billyluisneedham.plugins
+package com.billyluisneedham.infrastructure.plugins
 
 import io.ktor.auth.*
 import io.ktor.util.*

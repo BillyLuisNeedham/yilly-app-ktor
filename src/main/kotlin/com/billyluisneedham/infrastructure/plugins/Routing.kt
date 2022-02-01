@@ -1,5 +1,6 @@
-package com.billyluisneedham.plugins
+package com.billyluisneedham.infrastructure.plugins
 
+import com.billyluisneedham.infrastructure.routes.userRouting
 import io.ktor.routing.*
 import io.ktor.http.*
 import io.ktor.application.*
@@ -12,5 +13,6 @@ fun Application.configureRouting() {
         get("/") {
             call.respondText("Hello World!")
         }
+        userRouting()
     }
 }

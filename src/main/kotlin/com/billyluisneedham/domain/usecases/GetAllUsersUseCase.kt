@@ -5,10 +5,8 @@ import com.billyluisneedham.domain.models.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class GetUserByIdUseCase(private val repo: UserRepository) {
-
-    fun run(id: String): Flow<Result<User?>> = flow {
-        emit(repo.getUserById(id))
-
+class GetAllUsersUseCase(private val repo: UserRepository) {
+    fun run(): Flow<Result<List<User>>> = flow {
+        emit(repo.getAllUsers())
     }
 }

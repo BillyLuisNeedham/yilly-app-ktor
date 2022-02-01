@@ -1,5 +1,6 @@
 package com.billyluisneedham
 
+import com.billyluisneedham.infrastructure.plugins.configureRouting
 import io.ktor.features.*
 import org.slf4j.event.*
 import io.ktor.request.*

@@ -20,6 +20,8 @@ class UserRepository {
         return Result.success(newUser)
     }
 
+    fun getAllUsers(): Result<List<User>> = Result.success(users)
+
     fun getUserById(id: String): Result<User?> {
         val result = users.filter { user ->
             user.id == id
@@ -30,7 +32,7 @@ class UserRepository {
 
     fun deleteUserById(id: String): Result<Unit> {
         users = users.filter { user ->
-               user.id != id
+            user.id != id
         }
 
         return Result.success(Unit)

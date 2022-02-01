@@ -1,4 +1,4 @@
-package com.billyluisneedham.plugins
+package com.billyluisneedham.infrastructure.plugins
 
 import io.ktor.serialization.*
 import io.ktor.features.*

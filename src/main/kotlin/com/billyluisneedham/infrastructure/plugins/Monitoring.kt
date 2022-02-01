@@ -1,4 +1,4 @@
-package com.billyluisneedham.plugins
+package com.billyluisneedham.infrastructure.plugins
 
 import io.ktor.features.*
 import org.slf4j.event.*
