@@ -2,12 +2,10 @@ package com.billyluisneedham.infrastructure.routes
 
 import com.billyluisneedham.data.UserRepository
 import com.billyluisneedham.domain.dtos.UserCreateRequest
-import com.billyluisneedham.domain.models.User
 import com.billyluisneedham.domain.usecases.CreateUserUseCase
 import com.billyluisneedham.domain.usecases.GetAllUsersUseCase
 import com.billyluisneedham.domain.usecases.GetUserByIdUseCase
 import io.ktor.application.*
-import io.ktor.client.utils.EmptyContent.status
 import io.ktor.http.*
 import io.ktor.request.*
 import io.ktor.response.*
@@ -17,20 +15,22 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.take
 
 // TODO refactor to use dependency injection
+private val userRepo = UserRepository()
 fun Route.userRouting() {
     route("/user") {
 
         get {
-            GetAllUsersUseCase(UserRepository()).run()
-                .take(1).onEach { result ->
-                    result.onSuccess { users -> call.respond(users) }
-                    result.onFailure { throwable ->
-                        handleServerError(
-                            throwable = throwable,
-                            call = call
-                        )
-                    }
-                }.collect()
+            GetAllUsersUseCase(userRepo).run()
+                .onSuccess { users ->
+                    println("users: $users")
+                    call.respond(users)
+                }
+                .onFailure { throwable ->
+                    handleServerError(
+                        throwable = throwable,
+                        call = call
+                    )
+                }
         }
 
         get("{id}") {
@@ -40,7 +40,7 @@ fun Route.userRouting() {
             )
 
 
-            GetUserByIdUseCase(UserRepository()).run(id)
+            GetUserByIdUseCase(userRepo).run(id)
                 .take(1).onEach { result ->
                     result.onSuccess { user ->
                         when (user == null) {
@@ -56,7 +56,7 @@ fun Route.userRouting() {
 
         post {
             val userReq = call.receive<UserCreateRequest>()
-            CreateUserUseCase(UserRepository()).run(userReq)
+            CreateUserUseCase(userRepo).run(userReq)
                 .onSuccess {
                     call.respondText(
                         "User Created",
@@ -70,6 +70,7 @@ fun Route.userRouting() {
                     )
                 }
         }
+
     }
 }
 

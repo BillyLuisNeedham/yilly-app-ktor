@@ -16,11 +16,14 @@ class UserRepository {
             email = user.email
         )
         users = users.plus(newUser)
-
+        println("new user $newUser")
         return Result.success(newUser)
     }
 
-    fun getAllUsers(): Result<List<User>> = Result.success(users)
+    fun getAllUsers(): Result<List<User>> {
+        println("getAllUsers fired and returning: $users")
+    return Result.success(users)
+    }
 
     fun getUserById(id: String): Result<User?> {
         val result = users.filter { user ->
